@@ -13,7 +13,7 @@ interface HomeProps {
 };
 
 const Home = async ({ searchParams }: HomeProps) => {
-  const listings = await getListings(searchParams);
+  const listings = await getListings(searchParams)
   const currentUser = await getCurrentUser();
 
   if (listings.length === 0) {
@@ -47,6 +47,7 @@ const Home = async ({ searchParams }: HomeProps) => {
               data={listing}
             />
           ))}
+          jjjj
         </div>
       </Container>
     </ClientOnly>
