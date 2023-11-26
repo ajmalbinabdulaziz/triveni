@@ -115,7 +115,7 @@ const ListingClient: React.FC<ListingClientProps> = ({
       <div 
         className="
           max-w-screen-lg 
-          mx-auto
+          mx-auto mt-24 whitespace-nowrap overflow-auto scrollbar-hide
         "
       >
         <div className="flex flex-col gap-6">

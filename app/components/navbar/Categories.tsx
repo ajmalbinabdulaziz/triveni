@@ -5,7 +5,7 @@ import { TbSpeedboat, TbBeach, TbMountain, TbPool } from 'react-icons/tb';
 import { 
   GiCargoShip,
   GiBarn, 
-  GiBoatFishing, 
+  GiMoneyStack, 
   GiCactus, 
   GiCastle, 
   GiCaveEntrance, 
@@ -41,8 +41,8 @@ export const categories = [
     description: 'This property is near a lake!'
   },
   {
-    label: 'Taxi',
-    icon: BsTaxiFrontFill,
+    label: 'Pricing',
+    icon: GiMoneyStack,
     description: 'This property is an ancient castle!'
   },
 ]
@@ -74,7 +74,7 @@ const Categories = () => {
     <Container>
       <div
         className="
-          pt-4
+          pt-3
           grid
           grid-cols-3
           gap-3

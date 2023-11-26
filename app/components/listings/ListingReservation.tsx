@@ -1,9 +1,22 @@
 'use client';
 
 import { Range } from "react-date-range";
-
-import Button from "../Button";
+// import Button from "../Button";
 import Calendar from "../inputs/Calendar";
+
+import { DropdownMenuCheckboxItemProps } from "@radix-ui/react-dropdown-menu"
+ 
+import { Button } from "@/components/ui/button"
+import {
+  DropdownMenu,
+  DropdownMenuCheckboxItem,
+  DropdownMenuContent,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
+import { useState } from "react";
+
 
 interface ListingReservationProps {
   price: number;
@@ -14,6 +27,8 @@ interface ListingReservationProps {
   disabled?: boolean;
   disabledDates: Date[];
 }
+
+type Checked = DropdownMenuCheckboxItemProps["checked"]
 
 const ListingReservation: React.FC<
   ListingReservationProps
@@ -26,6 +41,10 @@ const ListingReservation: React.FC<
   disabled,
   disabledDates
 }) => {
+
+  const [cruiseMode, setCruiseMode] = useState("Day")
+  const [acMode, setAcMode] = useState("Ac")
+
   return ( 
     <div 
       className="
@@ -36,6 +55,66 @@ const ListingReservation: React.FC<
         overflow-hidden
       "
     >
+        <div className="flex justify-between">
+
+          <div className="flex  p-2">
+            <div className="py-2 pr-2">
+              <p>Cruise Mode </p>
+            </div>
+
+            <div>
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button variant="outline">{cruiseMode}</Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent>
+                <DropdownMenuCheckboxItem
+                  onClick={()=>{setCruiseMode("Night")}}
+                  checked={cruiseMode === "Night"}
+                >
+                  Night
+                </DropdownMenuCheckboxItem>
+            
+                <DropdownMenuCheckboxItem
+                  checked={cruiseMode === "Day"}
+                  onClick={()=>{setCruiseMode("Day")}}
+                >
+                  Day
+                </DropdownMenuCheckboxItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+          </div>
+          </div>
+
+          <div className="flex p-4">
+            <div className="py-2 pr-2">
+              Ac/Non Ac
+            </div>
+            <div>
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button variant="outline">{acMode}</Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent>
+                  <DropdownMenuCheckboxItem
+                    onClick={()=>{setAcMode("NonAc")}}
+                    checked={acMode === "NonAc"}
+                  >
+                    Non Ac
+                  </DropdownMenuCheckboxItem>
+              
+                  <DropdownMenuCheckboxItem
+                    checked={acMode === "Ac"}
+                    onClick={()=>{setAcMode("Ac")}}
+                  >
+                    Ac
+                  </DropdownMenuCheckboxItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+            </div>
+          
+          </div>
+        </div>
       <div className="
       flex flex-row items-center gap-1 p-4">
         <div className="text-2xl font-semibold">

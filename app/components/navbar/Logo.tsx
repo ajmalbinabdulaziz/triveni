@@ -10,18 +10,18 @@ const Logo = () => {
     <div className="flex">
     <Image
       onClick={() => router.push('/')}
-      className="hidden md:block cursor-pointer border rounded-full" 
-      src="/images/hb1.jpg" 
-      height="70" 
-      width="70" 
+      className="cursor-pointer border rounded-full" 
+      src="/images/triveni.jpg" 
+      height="50" 
+      width="50" 
       alt="Logo" 
     />
       <Image
       onClick={() => router.push('/')}
       className="hidden md:block cursor-pointer" 
       src="/images/Triveni.png" 
-      height="70" 
-      width="70" 
+      height="50" 
+      width="50" 
       alt="Logo" 
     />
     </div>

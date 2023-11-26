@@ -47,7 +47,7 @@ const Home = async ({ searchParams }: HomeProps) => {
               data={listing}
             />
           ))}
-          jjjj
+          
         </div>
       </Container>
     </ClientOnly>

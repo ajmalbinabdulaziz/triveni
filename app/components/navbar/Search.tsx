@@ -112,7 +112,7 @@ const Search = () => {
           <div 
             className="
               p-2 
-              bg-purple-500 
+              bg-orange-600 
               rounded-full 
               text-white
             "

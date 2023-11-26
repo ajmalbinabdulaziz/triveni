@@ -20,6 +20,7 @@ interface UserMenuProps {
 const UserMenu: React.FC<UserMenuProps> = ({
   currentUser
 }) => {
+  console.log(currentUser)
   const router = useRouter();
 
   const loginModal = useLoginModal();
@@ -103,6 +104,10 @@ const UserMenu: React.FC<UserMenuProps> = ({
             {currentUser ? (
               <>
                 <MenuItem 
+                  label="Book Now" 
+                  onClick={onRent}
+                />
+                <MenuItem 
                   label="My trips" 
                   onClick={() => router.push('/trips')}
                 />
@@ -119,7 +124,7 @@ const UserMenu: React.FC<UserMenuProps> = ({
                   onClick={() => router.push('/properties')}
                 />
                 <MenuItem 
-                  label="Airbnb your home" 
+                  label="Add items" 
                   onClick={rentModal.onOpen}
                 />
                 <hr />
@@ -131,13 +136,17 @@ const UserMenu: React.FC<UserMenuProps> = ({
             ) : (
               <>
                 <MenuItem 
+                  label="Book Now" 
+                  onClick={onRent}
+                />
+                <MenuItem 
                   label="Login" 
                   onClick={loginModal.onOpen}
                 />
                 <MenuItem 
                   label="Sign up" 
                   onClick={registerModal.onOpen}
-                />
+                />          
               </>
             )}
           </div>

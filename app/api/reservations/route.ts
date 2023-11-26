@@ -17,6 +17,8 @@ export async function POST(
     listingId,
     startDate,
     endDate,
+    cruiseMode,
+    acNonac,
     totalPrice
    } = body;
 
