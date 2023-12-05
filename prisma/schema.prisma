@@ -55,9 +55,6 @@ model Listing {
   roomCount Int
   bathroomCount Int
   guestCount Int
-  route String
-  cruiseMode String
-  acNonac String
   locationValue String
   userId String @db.ObjectId
   price Int
@@ -72,8 +69,6 @@ model Reservation {
   listingId String @db.ObjectId  
   startDate DateTime
   endDate DateTime
-  cruiseMode String
-  acNonac String
   totalPrice Int
   createdAt DateTime @default(now())
 
