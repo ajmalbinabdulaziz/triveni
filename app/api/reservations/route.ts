@@ -17,8 +17,8 @@ export async function POST(
     listingId,
     startDate,
     endDate,
-    cruiseMode,
-    acNonac,
+    nightCruise,
+    airConditioning,
     totalPrice
    } = body;
 
@@ -36,6 +36,8 @@ export async function POST(
           userId: currentUser.id,
           startDate,
           endDate,
+          nightCruise,
+          airConditioning,
           totalPrice,
         }
       }

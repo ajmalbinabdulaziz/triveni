@@ -13,7 +13,7 @@ import {
 } from "@/app/types";
 
 import HeartButton from "../HeartButton";
-import Button from "../Button";
+import ButtonIcon from "../ButtonIcon";
 import ClientOnly from "../ClientOnly";
 
 interface ListingCardProps {
@@ -123,7 +123,7 @@ const ListingCard: React.FC<ListingCardProps> = ({
           )}
         </div>
         {onAction && actionLabel && (
-          <Button
+          <ButtonIcon
             disabled={disabled}
             small
             label={actionLabel} 

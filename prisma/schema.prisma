@@ -69,6 +69,8 @@ model Reservation {
   listingId String @db.ObjectId  
   startDate DateTime
   endDate DateTime
+  nightCruise Boolean @default(false)
+  airConditioning Boolean @default(true)
   totalPrice Int
   createdAt DateTime @default(now())
 

@@ -1,7 +1,7 @@
 'use client';
 
 import { Range } from "react-date-range";
-// import Button from "../Button";
+import ButtonIcon from "../ButtonIcon";
 import Calendar from "../inputs/Calendar";
 
 import { DropdownMenuCheckboxItemProps } from "@radix-ui/react-dropdown-menu"
@@ -16,16 +16,21 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import { useState } from "react";
+import { TbRuler } from "react-icons/tb";
 
 
 interface ListingReservationProps {
-  price: number;
-  dateRange: Range,
-  totalPrice: number;
-  onChangeDate: (value: Range) => void;
-  onSubmit: () => void;
-  disabled?: boolean;
-  disabledDates: Date[];
+  price: number
+  dateRange: Range
+  totalPrice: number
+  onChangeDate: (value: Range) => void
+  onSubmit: () => void
+  disabled?: boolean
+  disabledDates: Date[]
+  airConditioning: string
+  setAirConditioning: (value: Range) => void
+  nightCruise: string
+  setNightCruise: (value: Range) => void
 }
 
 type Checked = DropdownMenuCheckboxItemProps["checked"]
@@ -39,11 +44,12 @@ const ListingReservation: React.FC<
   onChangeDate,
   onSubmit,
   disabled,
-  disabledDates
+  disabledDates,
+  airConditioning,
+  setAirConditioning,
+  nightCruise,
+  setNightCruise
 }) => {
-
-  const [cruiseMode, setCruiseMode] = useState("Day")
-  const [acMode, setAcMode] = useState("Ac")
 
   return ( 
     <div 
@@ -59,27 +65,27 @@ const ListingReservation: React.FC<
 
           <div className="flex  p-2">
             <div className="py-2 pr-2">
-              <p>Cruise Mode </p>
+              <p>Night Cruise</p>
             </div>
 
             <div>
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <Button variant="outline">{cruiseMode}</Button>
+                <Button variant="outline">{nightCruise}</Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent>
                 <DropdownMenuCheckboxItem
-                  onClick={()=>{setCruiseMode("Night")}}
-                  checked={cruiseMode === "Night"}
+                  onClick={()=> setNightCruise("Yes")}
+                  checked={nightCruise ==="Yes"}
                 >
-                  Night
+                  Yes
                 </DropdownMenuCheckboxItem>
             
                 <DropdownMenuCheckboxItem
-                  checked={cruiseMode === "Day"}
-                  onClick={()=>{setCruiseMode("Day")}}
+                  checked={nightCruise === "No"}
+                  onClick={()=>setNightCruise("No")}
                 >
-                  Day
+                  No
                 </DropdownMenuCheckboxItem>
               </DropdownMenuContent>
             </DropdownMenu>
@@ -88,26 +94,26 @@ const ListingReservation: React.FC<
 
           <div className="flex p-4">
             <div className="py-2 pr-2">
-              Ac/Non Ac
+              Air Conditioning
             </div>
             <div>
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
-                  <Button variant="outline">{acMode}</Button>
+                  <Button variant="outline">{airConditioning}</Button>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent>
                   <DropdownMenuCheckboxItem
-                    onClick={()=>{setAcMode("NonAc")}}
-                    checked={acMode === "NonAc"}
+                    onClick={()=>setAirConditioning("Yes")}
+                    checked={airConditioning === "Yes"}
                   >
-                    Non Ac
+                    Yes
                   </DropdownMenuCheckboxItem>
               
                   <DropdownMenuCheckboxItem
-                    checked={acMode === "Ac"}
-                    onClick={()=>{setAcMode("Ac")}}
+                    checked={airConditioning === "No"}
+                    onClick={()=>setAirConditioning("No")}
                   >
-                    Ac
+                    No
                   </DropdownMenuCheckboxItem>
                 </DropdownMenuContent>
               </DropdownMenu>
@@ -118,10 +124,10 @@ const ListingReservation: React.FC<
       <div className="
       flex flex-row items-center gap-1 p-4">
         <div className="text-2xl font-semibold">
-          $ {price}
+          $ {totalPrice}
         </div>
         <div className="font-light text-neutral-600">
-          night
+          {nightCruise ? "Night Cruise" : "Day Only"}
         </div>
       </div>
       <hr />
@@ -133,7 +139,7 @@ const ListingReservation: React.FC<
       />
       <hr />
       <div className="p-4">
-        <Button 
+        <ButtonIcon 
           disabled={disabled} 
           label="Reserve" 
           onClick={onSubmit}

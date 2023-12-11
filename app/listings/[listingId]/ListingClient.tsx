@@ -28,6 +28,7 @@ interface ListingClientProps {
     user: SafeUser;
   };
   currentUser?: SafeUser | null;
+
 }
 
 const ListingClient: React.FC<ListingClientProps> = ({
@@ -61,6 +62,12 @@ const ListingClient: React.FC<ListingClientProps> = ({
   const [isLoading, setIsLoading] = useState(false);
   const [totalPrice, setTotalPrice] = useState(listing.price);
   const [dateRange, setDateRange] = useState<Range>(initialDateRange);
+  const [nightCruise, setNightCruise] = useState("No")
+  const [airConditioning, setAirConditioning] = useState("No")
+
+  console.log(`nightCruise >> ${nightCruise}`)
+  console.log(`airCondition >> ${airConditioning}`)
+  console.log(`total price >> ${totalPrice}`)
 
   const onCreateReservation = useCallback(() => {
       if (!currentUser) {
@@ -69,6 +76,8 @@ const ListingClient: React.FC<ListingClientProps> = ({
       setIsLoading(true);
 
       axios.post('/api/reservations', {
+        nightCruise,
+        airConditioning,
         totalPrice,
         startDate: dateRange.startDate,
         endDate: dateRange.endDate,
@@ -88,6 +97,8 @@ const ListingClient: React.FC<ListingClientProps> = ({
   },
   [
     totalPrice, 
+    nightCruise,
+    airConditioning,
     dateRange, 
     listing?.id,
     router,
@@ -97,18 +108,27 @@ const ListingClient: React.FC<ListingClientProps> = ({
 
   useEffect(() => {
     if (dateRange.startDate && dateRange.endDate) {
-      const dayCount = differenceInDays(
+      const dayCount = 1 + differenceInDays(
         dateRange.endDate, 
         dateRange.startDate
       );  
       
-      if (dayCount && listing.price) {
+      if (nightCruise === "Yes" && airConditioning == "Yes"  && dayCount && listing.price) {
+          setTotalPrice(dayCount * (20 + 10 + listing.price));
+      } else if(nightCruise === "Yes" && airConditioning == "No" && dayCount && listing.price){
+          setTotalPrice(dayCount * (20 + listing.price));
+      } else if(nightCruise === "No" && airConditioning == "Yes" && dayCount && listing.price){
+          setTotalPrice(dayCount * (10 + listing.price));
+      } else if(nightCruise === "No" && airConditioning == "No" && dayCount && listing.price){
         setTotalPrice(dayCount * listing.price);
-      } else {
-        setTotalPrice(listing.price);
+      }              
+      else {
+        setTotalPrice(listing.price)
       }
+                
     }
-  }, [dateRange, listing.price]);
+  }, [dateRange, nightCruise, airConditioning, listing.price]);
+
 
   return ( 
     <Container>
@@ -160,6 +180,10 @@ const ListingClient: React.FC<ListingClientProps> = ({
                 onSubmit={onCreateReservation}
                 disabled={isLoading}
                 disabledDates={disabledDates}
+                airConditioning={airConditioning}
+                setAirConditioning={(value) => setAirConditioning(value)}
+                nightCruise={nightCruise}
+                setNightCruise={(value) =>setNightCruise(value)}
               />
             </div>
           </div>
