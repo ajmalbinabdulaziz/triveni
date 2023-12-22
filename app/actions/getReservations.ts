@@ -4,13 +4,16 @@ interface IParams {
   listingId?: string;
   userId?: string;
   authorId?: string;
+  nightCruise? : string;
+  airConditioning? :  string;
 }
 
 export default async function getReservations(
   params: IParams
 ) {
   try {
-    const { listingId, userId, authorId } = params;
+    const { listingId, userId, authorId,  nightCruise,
+      airConditioning, } = params;
 
     const query: any = {};
         
@@ -46,6 +49,8 @@ export default async function getReservations(
         ...reservation.listing,
         createdAt: reservation.listing.createdAt.toISOString(),
       },
+      // nightCruise: reservation.nightCruise.toISOString(),
+      // airConditioning: reservation.airConditioning.toISOString()
     }));
 
     return safeReservations;

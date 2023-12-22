@@ -65,10 +65,6 @@ const ListingClient: React.FC<ListingClientProps> = ({
   const [nightCruise, setNightCruise] = useState("No")
   const [airConditioning, setAirConditioning] = useState("No")
 
-  console.log(`nightCruise >> ${nightCruise}`)
-  console.log(`airCondition >> ${airConditioning}`)
-  console.log(`total price >> ${totalPrice}`)
-
   const onCreateReservation = useCallback(() => {
       if (!currentUser) {
         return loginModal.onOpen();
@@ -177,7 +173,7 @@ const ListingClient: React.FC<ListingClientProps> = ({
                 totalPrice={totalPrice}
                 onChangeDate={(value) => setDateRange(value)}
                 dateRange={dateRange}
-                onSubmit={onCreateReservation}
+                onSubmit={onCreateReservation}   
                 disabled={isLoading}
                 disabledDates={disabledDates}
                 airConditioning={airConditioning}

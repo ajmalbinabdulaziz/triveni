@@ -17,6 +17,7 @@ import {
 } from "@/components/ui/dropdown-menu"
 import { useState } from "react";
 import { TbRuler } from "react-icons/tb";
+import { useRouter } from "next/navigation";
 
 
 interface ListingReservationProps {
@@ -50,6 +51,8 @@ const ListingReservation: React.FC<
   nightCruise,
   setNightCruise
 }) => {
+
+  const router = useRouter()
 
   return ( 
     <div 
@@ -142,7 +145,8 @@ const ListingReservation: React.FC<
         <ButtonIcon 
           disabled={disabled} 
           label="Reserve" 
-          onClick={onSubmit}
+          // onClick={onSubmit}
+          onClick={()=>router.push('/payment')}
         />
       </div>
       <hr />
