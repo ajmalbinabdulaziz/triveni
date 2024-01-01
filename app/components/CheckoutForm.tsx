@@ -1,10 +1,13 @@
 import { useStripe, useElements, PaymentElement } from '@stripe/react-stripe-js'
 import React from 'react'
+import useTotalPriceStates from '../hooks/useTotalPriceStates'
 
 function CheckoutForm() {
 
     const stripe = useStripe()
     const elements = useElements()
+
+    const totalPrice  = useTotalPriceStates(state => state.price)
 
     const handleSubmit = async (event: any) => {
         event.preventDefault()
@@ -21,7 +24,7 @@ function CheckoutForm() {
       const res= await fetch("/api/create-intent", {
         method: "POST",
         body: JSON.stringify({
-          amount: 58,
+          amount: totalPrice,
         }),
       }) 
 

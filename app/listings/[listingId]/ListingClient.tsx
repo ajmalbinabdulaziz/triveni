@@ -15,6 +15,7 @@ import { categories } from "@/app/components/navbar/Categories";
 import ListingHead from "@/app/components/listings/ListingHead";
 import ListingInfo from "@/app/components/listings/ListingInfo";
 import ListingReservation from "@/app/components/listings/ListingReservation";
+import useTotalPriceStates from "@/app/hooks/useTotalPriceStates";
 
 const initialDateRange = {
   startDate: new Date(),
@@ -39,6 +40,13 @@ const ListingClient: React.FC<ListingClientProps> = ({
   const loginModal = useLoginModal();
   const router = useRouter();
 
+  // console.log(`Listing Price ${listing.price}`)
+  // console.log(price)
+  // console.log(addPrice(10))
+  // const test = addPrice(18)
+  // console.log(`test price ${test}`)
+
+
   const disabledDates = useMemo(() => {
     let dates: Date[] = [];
 
@@ -59,8 +67,12 @@ const ListingClient: React.FC<ListingClientProps> = ({
       items.label === listing.category);
   }, [listing.category]);
 
+  const totalPrice  = useTotalPriceStates(state => state.price)
+  const setTotalPrice  = useTotalPriceStates(state => state.addPrice)
+
+
   const [isLoading, setIsLoading] = useState(false);
-  const [totalPrice, setTotalPrice] = useState(listing.price);
+  // const [totalPrice, setTotalPrice] = useState(listing.price);
   const [dateRange, setDateRange] = useState<Range>(initialDateRange);
   const [nightCruise, setNightCruise] = useState("No")
   const [airConditioning, setAirConditioning] = useState("No")
