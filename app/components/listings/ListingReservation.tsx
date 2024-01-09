@@ -144,7 +144,7 @@ const ListingReservation: React.FC<
       <div className="p-4">
         <ButtonIcon 
           disabled={disabled} 
-          label="Reserve" 
+          label="Proceed to Payment" 
           // onClick={onSubmit}
           onClick={()=>router.push('/payment')}
         />

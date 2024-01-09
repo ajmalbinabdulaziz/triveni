@@ -30,7 +30,6 @@ function CheckoutForm() {
 
       const secretKey = await res.json()
       // const {client_secret: clientSecret} = await res.json() 
-      console.log(secretKey)
       const { error } = await stripe?.confirmPayment(
         {
           clientSecret: secretKey,

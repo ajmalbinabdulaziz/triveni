@@ -150,7 +150,7 @@ const ListingClient: React.FC<ListingClientProps> = ({
           <ListingHead
             title={listing.title}
             imageSrc={listing.imageSrc}
-            locationValue={listing.locationValue}
+            // locationValue={listing.locationValue}
             id={listing.id}
             currentUser={currentUser}
           />
@@ -163,7 +163,7 @@ const ListingClient: React.FC<ListingClientProps> = ({
               mt-6
             "
           >
-            <ListingInfo
+            <ListingInfo   
               user={listing.user}
               category={category}
               description={listing.description}
@@ -191,7 +191,7 @@ const ListingClient: React.FC<ListingClientProps> = ({
                 airConditioning={airConditioning}
                 setAirConditioning={(value) => setAirConditioning(value)}
                 nightCruise={nightCruise}
-                setNightCruise={(value) =>setNightCruise(value)}
+                setNightCruise={(value) => setNightCruise(value)}
               />
             </div>
           </div>

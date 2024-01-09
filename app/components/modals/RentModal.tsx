@@ -16,7 +16,7 @@ import useRentModal from '@/app/hooks/useRentModal';
 import Modal from "./Modal";
 import Counter from "../inputs/Counter";
 import CategoryInput from '../inputs/CategoryInput';
-import CountrySelect from "../inputs/CountrySelect";
+// import CountrySelect from "../inputs/CountrySelect";
 import { categories } from '../navbar/Categories';
 import ImageUpload from '../inputs/ImageUpload';
 import Input from '../inputs/Input';
@@ -50,7 +50,7 @@ const RentModal = () => {
   } = useForm<FieldValues>({
     defaultValues: {
       category: '',
-      location: null,
+      // location: null,
       guestCount: 1,
       roomCount: 1,
       bathroomCount: 1,
@@ -61,16 +61,16 @@ const RentModal = () => {
     }
   });
 
-  const location = watch('location');
+  // const location = watch('location');
   const category = watch('category');
   const guestCount = watch('guestCount');
   const roomCount = watch('roomCount');
   const bathroomCount = watch('bathroomCount');
   const imageSrc = watch('imageSrc');
 
-  const Map = useMemo(() => dynamic(() => import('../Map'), { 
-    ssr: false 
-  }), [location]);
+  // const Map = useMemo(() => dynamic(() => import('../Map'), { 
+  //   ssr: false 
+  // }), [location]);
 
 
   const setCustomValue = (id: string, value: any) => {
@@ -159,21 +159,21 @@ const RentModal = () => {
     </div>
   )
 
-  if (step === STEPS.LOCATION) {
-    bodyContent = (
-      <div className="flex flex-col gap-8">
-        <Heading
-          title="Where is your place located?"
-          subtitle="Help guests find you!"
-        />
-        <CountrySelect 
-          value={location} 
-          onChange={(value) => setCustomValue('location', value)} 
-        />
-        <Map center={location?.latlng} />
-      </div>
-    );
-  }
+  // if (step === STEPS.LOCATION) {
+  //   bodyContent = (
+  //     <div className="flex flex-col gap-8">
+  //       <Heading
+  //         title="Where is your place located?"
+  //         subtitle="Help guests find you!"
+  //       />
+  //       <CountrySelect 
+  //         value={location} 
+  //         onChange={(value) => setCustomValue('location', value)} 
+  //       />
+  //       <Map center={location?.latlng} />
+  //     </div>
+  //   );
+  // }
 
   if (step === STEPS.INFO) {
     bodyContent = (

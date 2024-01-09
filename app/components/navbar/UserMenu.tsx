@@ -20,7 +20,6 @@ interface UserMenuProps {
 const UserMenu: React.FC<UserMenuProps> = ({
   currentUser
 }) => {
-  console.log(currentUser)
   const router = useRouter();
 
   const loginModal = useLoginModal();
@@ -45,7 +44,7 @@ const UserMenu: React.FC<UserMenuProps> = ({
     <div className="relative">
       <div className="flex flex-row items-center gap-3">
         <div 
-          onClick={onRent}
+          // onClick={onRent}
           className="
             hidden
             md:block
@@ -53,13 +52,10 @@ const UserMenu: React.FC<UserMenuProps> = ({
             font-semibold 
             py-3 
             px-4 
-            rounded-full 
-            hover:bg-neutral-100 
-            transition 
-            cursor-pointer
+        
           "
         >
-          Book Now
+          {/* Book Now */}
         </div>
         <div 
         onClick={toggleOpen}
@@ -101,24 +97,8 @@ const UserMenu: React.FC<UserMenuProps> = ({
           "
         >
           <div className="flex flex-col cursor-pointer">
-            {currentUser ? (
+            {currentUser?.email ==="riquiroman8@gmail.com" ? (
               <>
-                <MenuItem 
-                  label="Book Now" 
-                  onClick={onRent}
-                />
-                <MenuItem 
-                  label="My trips" 
-                  onClick={() => router.push('/trips')}
-                />
-                <MenuItem 
-                  label="My favorites" 
-                  onClick={() => router.push('/favorites')}
-                />
-                <MenuItem 
-                  label="My reservations" 
-                  onClick={() => router.push('/reservations')}
-                />
                 <MenuItem 
                   label="My properties" 
                   onClick={() => router.push('/properties')}
@@ -133,21 +113,37 @@ const UserMenu: React.FC<UserMenuProps> = ({
                   onClick={() => signOut()}
                 />
               </>
-            ) : (
+            ) : currentUser ? (
               <>
                 <MenuItem 
-                  label="Book Now" 
-                  onClick={onRent}
+                  label="My trips" 
+                  onClick={() => router.push('/trips')}
                 />
                 <MenuItem 
-                  label="Login" 
-                  onClick={loginModal.onOpen}
+                  label="My favorites" 
+                  onClick={() => router.push('/favorites')}
                 />
                 <MenuItem 
-                  label="Sign up" 
-                  onClick={registerModal.onOpen}
-                />          
+                  label="My reservations" 
+                  onClick={() => router.push('/reservations')}
+                />
+                <hr />
+                <MenuItem 
+                  label="Logout" 
+                  onClick={() => signOut()}
+                />
               </>
+            ): (
+              <>
+              <MenuItem 
+                label="Login" 
+                onClick={loginModal.onOpen}
+              />
+              <MenuItem 
+                label="Sign up" 
+                onClick={registerModal.onOpen}
+              />          
+            </>
             )}
           </div>
         </div>
